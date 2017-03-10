@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Anggota extends Authenticatable
+class Anggota extends Model
 {
     proteccted $table ='anggota';
     proteccted $fillable = ['nama', 'alamat'];

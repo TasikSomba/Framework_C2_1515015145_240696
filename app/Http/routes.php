@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view ('welcome');
 });
 
-Route::get('/public', function () {
-    return ('My Name is : Tasik Somba B.L');
-});
+//Route::get('/', function () {
+  //  return ('My Name is : Tasik Somba B.L');
+//});
+
+Route::get('pengguna2/{pengguna2}', function($pengguna2){
+		return "Hello world dari pengguna2 $pengguna2";
+
+	});
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
