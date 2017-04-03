@@ -1,5 +1,6 @@
 <?php
 
+use App\pengguna;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,6 +11,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+Route::get('/', function(){
+	$dosen_mengajar = App\dosen::with('pengguna')->get();
+	return $dosen_mengajar;
+
+});
 
 Route::get('jadwalmatakuliah/lihat/{jadwalmatakuliah}', 'jadwalmatakuliahController@lihat');
 Route::post('jadwalmatakuliah/simpan','jadwalmatakuliahController@simpan');
@@ -91,9 +98,9 @@ Route::get('master',function(){
 	return 'Nama Saya : Tasik Somba';
 });
 
-Route::get('/', function () {
-    return view('master');
-});
+// Route::get('/', function () {
+//     return view('master');
+// });
 
 Route::get('/public', function(){
 	return('Nama Saya :Tasik Somba B.L');
