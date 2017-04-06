@@ -52,6 +52,7 @@ Route::get('master',function(){
 });
 
 
+/*Route::get('mahasiswa/{mahasiswa}', 'mahasiswaController@lihat');*/
 Route::get('mahasiswa/lihat/{mahasiswa}', 'mahasiswaController@lihat');
 Route::post('mahasiswa/simpan','mahasiswaController@simpan');
 Route::get('mahasiswa/edit/{mahasiswa}', 'mahasiswaController@edit');

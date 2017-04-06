@@ -3,7 +3,7 @@
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<strong><a href="{{url('dosen')}}"><i class="fa text-default fa-cheron-left"></i></a> Perbarui Dosen</strong>
+		<strong><a href="{{url('dosen')}}"><i class="fa text-default fa-cheron-left"></i></a> Perbarui Data Dosen</strong>
 	</div>
 	{!! Form::model($dosen,['url'=>'dosen/edit/'.$dosen->id,'class'=>'form-horizontal']) !!}
 	@include('dosen.form')

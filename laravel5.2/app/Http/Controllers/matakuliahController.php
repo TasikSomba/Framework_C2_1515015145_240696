@@ -9,10 +9,12 @@ use App\matakuliah;
 
 class matakuliahController extends Controller
 {
+	protected $informasi = 'Gagal Melakukan Aksi';
      public function awal()
 	{
+		$semuamatakuliah = matakuliah::all();
 		/*return "Hello dari matakuliahController";*/
-		return view('matakuliah.awal',['data'=>matakuliah::all()]);
+		return view('matakuliah.awal',['semuamatakuliah'=>matakuliah::all()]);
 	}
 	public function tambah()
 	{
@@ -25,7 +27,7 @@ class matakuliahController extends Controller
 		$matakuliah->title = $input->title;
 		$matakuliah->keterangan = $input->keterangan;
 		$informasi = $matakuliah->save()? 'Berhasil simpan data' : 'gagal simpan data';
-		return redirect('matakuliah')->with(['informasi'=>$informasi]);
+		return redirect('matakuliah')->with(['informasi'=>$this->informasi]);
 	}
 	public function edit($id)
 	{
@@ -48,7 +50,7 @@ class matakuliahController extends Controller
 	public function hapus($id)
 	{
 		$matakuliah = matakuliah::find($id);
-		$informasi = $matakuliah->hapus()? 'Berhasil hapus data' : 'gagal hapus data';
+		$informasi = $matakuliah->delete()? 'Berhasil hapus data' : 'gagal hapus data';
 		return redirect('matakuliah')->with(['informasi'=>$informasi]);
 	}
 }

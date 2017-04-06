@@ -10,23 +10,23 @@
 		<thead>
 			<tr>
 				<th>No.</th>
-				<th>dosen_id</th>
-				<th>Matakuliah_id</th>
+				<th>Nama Dosen Matakuliah</th>
+				<th>Nama Matakuliah</th>
 				<th>Aksi</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php $x=1; ?>
-			@foreach ($data as $dosenmatakuliah)
+			@foreach ($semuadosenmatakuliah as $dosenmatakuliah)
 			<tr>
 				<td>{{ $x++}}</td>
-
-				<td>{{ $dosenmatakuliah->dosen_id or 'Dosen_id Kosong' }}</td>
-				<td>{{ $dosenmatakuliah->matakuliah_id or 'Semangat' }}</td>
+				<td>{{ $dosenmatakuliah->dosen->nama or 'nama Kosong' }}</td>
+				<td>{{ $dosenmatakuliah->matakuliah->title or 'matakuliah Kosong' }}</td>
+				<!-- <td>{{ $dosenmatakuliah->jadwalmatakuliah->dosenmatakuliah->matakuliah_id or 'dosenmatakuliah Kosong' }}</td> -->
 				<td>
 					<div class="btn-group" role="group">
-						<a href="{{url('dosenmatakuliah/edit/'.$dosenmatakuliah->id)}}" class="btn btn-warning btn-xs" data-toogle="tooltip" data-placement="top" title="Ubah"><i class="fa fa-pencil"></i></a>
-						<a href="{{url('dosenmatakuliah/lihat/'.$dosenmatakuliah->id)}}" class="btn btn-info btn-xs" data-toogle="tooltip" data-placement="top" title="Lihat"><i class="fa fa-eye"></i></a>
+						<a href="{{url('dosenmatakuliah/edit/'.$dosenmatakuliah->id)}}" class="btn btn-info btn-xs" data-toogle="tooltip" data-placement="top" title="Ubah"><i class="fa fa-pencil"></i></a>
+						<a href="{{url('dosenmatakuliah/lihat/'.$dosenmatakuliah->id)}}" class="btn btn-warning btn-xs" data-toogle="tooltip" data-placement="top" title="Lihat"><i class="fa fa-eye"></i></a>
 						<a href="{{url('dosenmatakuliah/hapus/'.$dosenmatakuliah->id)}}" class="btn btn-danger btn-xs" data-toogle="tooltip" data-placement="top" title="Hapus"><i class="fa fa-remove"></i></a>
 					</div>
 				</td>

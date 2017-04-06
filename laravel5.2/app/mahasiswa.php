@@ -13,7 +13,7 @@ class mahasiswa extends Model
 	
     protected $table = 'mahasiswa';
     protected $fillable = ['nama','nim','alamat','pengguna_id'];
-    $mahasiswa = pengguna::find(1)->mahasiswa;
+   /* $mahasiswa = pengguna::find(1)->$mahasiswa;*/
 
     public function jadwalmatakuliah() //fungsi dengan nama jadwal_matakuliah
     {
@@ -21,6 +21,17 @@ class mahasiswa extends Model
                                                                        // hasMany menandakan bahwa relasi tersebut bernilai Many. dimana setiap mahasiswa dapat memiliki banyak jadwal_matakuliah.
                                                                        // (jadwalmatakuliah::class,'mahasiswa_id') -> jadwalmatakuliah adalah nama dari model yang direlasikan pada model mahasiswa.
                                                                        //                                              mahasiswa_id adalah nama field yang berfungsi sebagai foreign key.
+    }
+    public function getUsernameAttribute(){
+      return $this->pengguna->username;
+    }
+
+    public function listMahasiswaDanNim(){
+      $out =[];
+      foreach ($this->all() as $mahasiswa){
+        $out[$mahasiswa->id] = "{$mahasiswa->nama} ({$mahasiswa->nim})";
+      }
+      return $out;
     }
 }
 

@@ -2,7 +2,7 @@
 @section('container')
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		<strong><a href="{{ url('jadwalmatakuliah') }}"><i style="color:white;" class="fa text-default fa-chevron-left"></i></a> Tambah Jadwal Matakuliah</strong>
+		<strong><a href="{{ url('jadwalmatakuliah') }}"><i style="color:white;" class="fa text-default fa-chevron-left"></i></a> Tambah Data Jadwal Matakuliah</strong>
 	</div>
 	{!! Form::open(['url'=>'jadwalmatakuliah/simpan','class'=>'form-horizontal']) !!}
 	@include('jadwalmatakuliah.form')

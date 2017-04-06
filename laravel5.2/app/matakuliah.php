@@ -15,4 +15,11 @@ class matakuliah extends Model
                                                                        // (dosen_matakuliah::class,'matakuliah_id') -> dosen_matakuliah adalah nama dari model yang direlasikan pada model matakuliah.
                                                                        //                                              matakuliah_id adalah nama field yang berfungsi sebagai foreign key.
     }
+    public function listMatakuliahdanDosen(){
+      $out =[];
+      foreach ($this->all() as $matakuliah){
+        $out[$matakuliah->id] = "{$matakuliah->title}";
+      }
+      return $out;
+    }
 }

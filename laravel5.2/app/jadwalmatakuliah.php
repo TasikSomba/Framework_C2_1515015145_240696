@@ -24,7 +24,7 @@ class jadwalmatakuliah extends Model
 
     public function dosenmatakuliah()//fungsi dengan nama dosen_matakuliah
     {
-        return $this->belongsTo(dosenmatakuliah::class,'dosenmatakuliah');// return nilai fungsi dosen_matakuliah, dimana nilai return tersebut memiliki metode dengan nama belongsTo.
+        return $this->belongsTo(dosenmatakuliah::class);// return nilai fungsi dosen_matakuliah, dimana nilai return tersebut memiliki metode dengan nama belongsTo.
                                                          // belongsTo digunakan untuk mendefinisikan kebalikan dari hubungan yang ada pada model dosen_matakuliah. 
                                                          // (dosen_matakuliah::class,'dosen_matakuliah') -> dosen_matakuliah adalah nama dari model yang direlasikan pada model jadwal_matakuliah.
                                                          //                                                 dosen_matakuliah adalah nama foreign key, karena pada table jadwal_matakuliah foreign key nya bukan _id, maka perlu di definisikan pada metode belongsTo

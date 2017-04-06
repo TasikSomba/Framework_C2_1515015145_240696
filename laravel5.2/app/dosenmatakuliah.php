@@ -25,9 +25,16 @@ class dosenmatakuliah extends Model
 
     public function jadwalmatakuliah() //fungsi dengan nama jadwal_matakuliah
     {
-        return $this->hasMany(jadwalmatakuliah::class,'dosenmatakuliah');// return nilai fungsi jadwal_matakuliah, dimana nilai return tersebut memiliki metode dengan nama hasMany.
+        return $this->hasMany(jadwalmatakuliah::class);// return nilai fungsi jadwal_matakuliah, dimana nilai return tersebut memiliki metode dengan nama hasMany.
                                                                            // hasMany menandakan bahwa relasi tersebut bernilai Many. dimana setiap dosen_matakuliah dapat memiliki banyak jadwal_matakuliah.
                                                                            // (jadwal_matakuliah::class,'dosen_matakuliah_id') -> jadwal_matakuliah adalah nama dari model yang direlasikan pada model dosen_matakuliah.
                                                                            //                                                     dosen_matakuliah adalah nama field yang berfungsi sebagai foreign key.
     } 
+    public function listDosenDanMatakuliah(){
+      $out =[];
+      foreach ($this->all() as $dosenmatakuliah){
+        $out[$dosenmatakuliah->id] = "{$dosenmatakuliah->dosen->nama} (matakuliah {$dosenmatakuliah->matakuliah->title})";
+      }
+      return $out;
+    }
 }
