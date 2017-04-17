@@ -99,6 +99,37 @@ Route::get('master',function(){
 	return 'Nama Saya : Tasik Somba';
 });
 
+Route::get('ujiHas','RelationshipRebornController@ujiHas');
+Route::get('ujiDoesntHave','RelationshipRebornController@ujiDoesntHave');
+Route::get('/', function(){
+	return \App\dosenmatakuliah::whereHas('dosen',function($query){
+		$query->where('nama','like','%s%');
+	})
+	->orWhereHas('matakuliah',function($kueri){
+		$kueri->where('title','like','%a%');
+	})
+	->with('dosen')
+	->groupBy('dosen_id')
+	->get();
+});
+
+
+// Route::get('ujiHas','RelationshipRebornController2@ujiHas');
+// Route::get('ujiDoesntHave','RelationshipRebornController2@ujiDoesntHave');
+// Route::get('/', function(){
+// 	return \App\jadwalmatakuliah::whereHas('mahasiswa',function($query){
+// 		$query->where('nama','like','%i%');
+// 	})
+// 	->orWhereHas('jadwalmatakuliah',function($kueri){
+// 		$kueri->where('ruangan_id','like','_');
+// 	})
+// 	->with('mahasiswa')
+// 	->groupBy('mahasiswa_id')
+// 	->get();
+// });
+
+
+
 // Route::get('/', function () {
 //     return view('master');
 // });

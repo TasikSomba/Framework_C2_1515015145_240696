@@ -16,7 +16,9 @@ class dosen extends Model
 
     }
     public function dosenmatakuliah(){//fungsi dengan nama dosen_matakuliah
-    	return $this->hasMany(dosenmatakuliah::class,'dosenmatakuliah_id');// return nilai fungsi dosen_matakuliah, dimana nilai return tersebut memiliki metode dengan nama hasMany.
+    	return $this->hasMany(dosenmatakuliah::class);// return nilai fungsi dosen_matakuliah, dimana nilai return tersebut memiliki metode dengan nama hasMany.
+
+      //kalo ada eror tambahkan (,dosenmatakuliah_id)
                                                                   // hasMany menandakan bahwa relasi tersebut bernilai Many. dimana setiap dosen dapat mengajar banyak matakuliah.
                                                                   // (dosen_matakuliah::class,'dosen_id') -> dosen_matakuliah adalah nama dari model yang direlasikan pada model dosen.
                                                                   //                                         dosen_id adalah nama field yang berfungsi sebagai foreign key.
