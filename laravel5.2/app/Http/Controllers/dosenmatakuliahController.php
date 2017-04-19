@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\dosenmatakuliah;
 use App\dosen;
 use App\matakuliah;
+use App\Http\Requests\DosenmatakuliahRequest;
 
 class dosenmatakuliahController extends Controller
 {
@@ -24,7 +25,7 @@ class dosenmatakuliahController extends Controller
 		$matakuliah = new matakuliah;
 		return view('dosenmatakuliah.tambah', compact('dosen','matakuliah'));
 	}
-	public function simpan(Request $input)
+	public function simpan(DosenmatakuliahRequest $input)
 	{
 		$dosenmatakuliah = new dosenmatakuliah($input->only('dosen_id','matakuliah_id'));
 
@@ -46,7 +47,7 @@ class dosenmatakuliahController extends Controller
 		$dosenmatakuliah = dosenmatakuliah::find($id);
 		return view('dosenmatakuliah.lihat')->with(array('dosenmatakuliah'=>$dosenmatakuliah));
 	}
-	public function update($id, Request $input)
+	public function update($id, DosenmatakuliahRequest $input)
 	{
 		$dosenmatakuliah = dosenmatakuliah::find($id);
 		$dosenmatakuliah->fill($input->only('dosen_id','matakuliah_id'));

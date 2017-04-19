@@ -101,38 +101,71 @@ Route::get('master',function(){
 
 Route::get('ujiHas','RelationshipRebornController@ujiHas');
 Route::get('ujiDoesntHave','RelationshipRebornController@ujiDoesntHave');
-Route::get('/', function(){
+Route::get('/cari_relasi_h_dosen', function(){
 	return \App\dosenmatakuliah::whereHas('dosen',function($query){
 		$query->where('nama','like','%s%');
+
+	})->with('dosen')
+	  ->groupBy('dosen_id')
+	  ->get();
+});
+
+Route::get('/cari_relasi_a_dosenmatakuliah', function(){
+	return \App\dosenmatakuliah::whereHas('dosen',function($query){
+		$query->where('nama','like','%a%');
 	})
-	->orWhereHas('matakuliah',function($kueri){
-		$kueri->where('title','like','%a%');
+	->orWhereHas('jadwalmatakuliah',function($kueri){
+		$kueri->where('ruangan_id','like','_');
 	})
-	->with('dosen')
+	->with('dosen','matakuliah')
 	->groupBy('dosen_id')
 	->get();
 });
 
+Route::get('/cari_relasi_a_mahasiswa', function(){
+	return \App\jadwalmatakuliah::whereHas('mahasiswa',function($Kuuery){
+		$kuuery->where('nama','like','%a%');
+	})
+	->with('mahasiswa')
+	->groupBy('mahasiswa_id')
+	->get();
+});
 
-// Route::get('ujiHas','RelationshipRebornController2@ujiHas');
-// Route::get('ujiDoesntHave','RelationshipRebornController2@ujiDoesntHave');
-// Route::get('/', function(){
-// 	return \App\jadwalmatakuliah::whereHas('mahasiswa',function($query){
-// 		$query->where('nama','like','%i%');
-// 	})
-// 	->orWhereHas('jadwalmatakuliah',function($kueri){
-// 		$kueri->where('ruangan_id','like','_');
-// 	})
-// 	->with('mahasiswa')
-// 	->groupBy('mahasiswa_id')
-// 	->get();
-// });
+Route::get('/cari_relasi_a_0_jadwalmatakuliah', function(){
+	return \App\jadwalmatakuliah::whereHas('mahasiswa',function($Kuuery){
+		$kuuery->where('nama','like','%a%');
+	})
+	->orWhereHas('ruangan', function($Kuueri){
+		$Kuueri->where('title','like','%0%');
+	})
+	->with('mahasiswa','ruangan')
+	->groupBy('mahasiswa_id')
+	->get();
+});
 
 
 
-// Route::get('/', function () {
-//     return view('master');
-// });
+Route::get('/', function () {
+    return view('master');
+});
+
+Route::get('/',function(Illuminate\Http\Request $request)
+{
+	echo "ini adalah request dari method get". $request->nama;
+
+	});
+use Illuminate\Http\Request;
+Route::get('/',function(){
+	echo Form::open(['url'=>'/']).
+		 Form::label('nama').
+		 Form::text('nama',null).
+		 Form::submit('kirim').
+		 Form::close();
+});
+Route::post('/',function(Request $request){
+	echo "Hasil dari Form input tadi nama : ".$request->nama;
+});
+
 
 Route::get('/public', function(){
 	return('Nama Saya :Tasik Somba B.L');
